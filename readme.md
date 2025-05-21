@@ -56,3 +56,23 @@ You will see log messages showing how many clients remain connected and how much
 * For correct behavior, use **1 worker** when running `uvicorn`. Multiple workers (`--workers > 1`) would launch separate processes with isolated memory and may break shared connection tracking.
 
 
+Purpose:
+
+This server is designed to deliver real-time notifications to connected clients using WebSocket technology. It is useful when timely information delivery is crucial—such as alerts, updates, and live feeds.
+
+Key Features:
+   WebSocket endpoint for multiple client connections.
+   Sends scheduled (or on-demand) messages to all connected clients.
+   Tracks and removes disconnected clients.
+   Graceful shutdown support:
+      Server waits until all clients disconnect OR
+      Forces shutdown after 30 minutes.
+   Signal handling for SIGINT and SIGTERM.
+   Based on FastAPI’s new lifespan event system.
+
+Potential Use Cases:
+   Finance apps — real-time stock/crypto updates.
+   Chat applications — as a base for real-time communication.
+   Monitoring & alerting systems — instant delivery of alerts.
+   Online multiplayer games — live game state synchronization.
+   Trading dashboards — pushing updates about orders or price changes.
